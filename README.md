@@ -56,7 +56,7 @@ The Flask application was containerized using Docker to ensure consistent deploy
 
 ### Running Docker Container
 
-![Docker Container](<Screenshots/Docker/Browser test.PNG>)
+![Docker Container](<Screenshots/Docker/Running Docker Container.PNG>)
 
 ### Docker Container List
 
@@ -64,6 +64,6 @@ The Flask application was containerized using Docker to ensure consistent deploy
 
 ### Browser Test via Docker
 
-![Docker Browser Test](<screenshots/docker/docker-browser-test.png>)
+![Docker Browser Test](<Screenshots/Docker/Browser test.PNG>)
 
 ---
