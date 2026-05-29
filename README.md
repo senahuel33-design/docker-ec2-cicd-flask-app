@@ -75,21 +75,21 @@ The Flask application environment was systematically validated and executed loca
 ### Docker Build Success
 The multi-layer image compilation completed successfully, resolving all background dependencies and verifying structural build definitions.
 
-![Docker Build](<screenshots/docker/docker-build-success.png>)
+![Docker Build](<Docker/docker-build-success.png>)
 
 ### Running Docker Container
 The compiled image was instantiated into an active local runtime session, initializing the internal WSGI micro-framework server.
 
-![Docker Container](<screenshots/docker/docker-container-running.png>)
+![Docker Container](<Docker/docker-container-running.png>)
 
 ### Browser Test via Localhost Loopback
 Network routing protocols were audited across the WSL2 bridge by verifying the active user interface via a host browser loopback session at port `5000`.
 
-![Docker Browser Test](<screenshots/docker/docker-browser-test.png>)
+![Docker Browser Test](<Docker/app-live.png>)
 
 ### Docker Process Audit (Container List)
 An explicit container engine inspection was executed to validate continuous runtime stability, uptime metrics, and absolute port binding parity.
 
-![Docker PS](<screenshots/docker/docker-ps.png>)
+![Docker PS](<Docker/docker-ps.png>)
 
 ---
