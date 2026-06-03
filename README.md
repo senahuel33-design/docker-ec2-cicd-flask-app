@@ -29,103 +29,84 @@ docker-ec2-cicd-flask-app/
 │
 └── README.md
 
-## Step 1 – Create Flask Application
+# Step 1 – Create Flask Application
 
 Created a simple Flask web application running locally.
 
-### Flask Application Code
-![Flask Code](<Screenshots/Flask app/Flask Application Code.PNG>)
+## Flask Application Code
+![Flask Code](<screenshots/local/flask-code.png>)
 
-### Flask Application Running
-![Flask Running](<Screenshots/Flask app/Flask Application Running.PNG>)
+## Flask Application Running
+![Flask Running](<screenshots/local/flask-terminal-running.png>)
 
-### Browser Test
-![Browser Test](<Screenshots/Flask app/Flask app running in terminal.PNG>)
+## Browser Test
+![Browser Test](<screenshots/local/flask-browser-test.png>)
 
 ---
 
-## Step 2 – Dockerize the Flask Application
+# Step 2 – Dockerize the Flask Application
 
 The Flask application was containerized using Docker to ensure consistent deployment across environments.
 
-### Dockerfile
+## Dockerfile
+![Dockerfile](<screenshots/docker/dockerfile.png>)
 
-![Dockerfile](<Screenshots/Docker/Dockerfile.PNG>)
+## Docker Build Success
+![Docker Build](<screenshots/docker/docker-build-success.png>)
 
-### Docker Build Success
+## Running Docker Container
+![Docker Container](<screenshots/docker/docker-container-running.png>)
 
-![Docker Build](<Screenshots/Docker/Docker build success.PNG>)
+## Docker Process Audit (Container List)
+![Docker PS](<screenshots/docker/docker-ps.png>)
 
-![Docker Build](<Screenshots/Docker/Docker build success 1.PNG>)
-
-### Running Docker Container
-
-![Docker Container](<Screenshots/Docker/Running Docker Container.PNG>)
-
-### Docker Container List
-
-![Docker PS](<Screenshots/Docker/Docker ps.PNG>)
-
-### Browser Test via Docker
-
-![Docker Browser Test](<Screenshots/Docker/Browser test.PNG>)
+## Browser Test via Localhost Loopback
+![Docker Browser Test](<screenshots/docker/docker-browser-test.png>)
 
 ---
 
-## Step 3 – Local Containerization & Verification
+# Step 3 – Deploy Docker Container to AWS EC2
 
-The Flask application environment was systematically validated and executed locally using Docker Desktop integrated with a WSL2 (Ubuntu) backend.
+Launched an EC2 instance and deployed the Dockerized Flask application to the cloud.
 
-### Docker Build Success
-The multi-layer image compilation completed successfully, resolving all background dependencies and verifying structural build definitions.
+## EC2 Instance Created
+![EC2 Instance](<screenshots/ec2/ec2-instance-created.png>)
 
-![Docker Build](<Docker/docker-build-success.png>)
+## SSH Connection to EC2
+![SSH Connection](<screenshots/ec2/ssh-connection.png>)
 
-### Running Docker Container
-The compiled image was instantiated into an active local runtime session, initializing the internal WSGI micro-framework server.
+## EC2 Security Group Configuration
+![Security Group](<screenshots/ec2/security-group.png>)
 
-![Docker Container](<Docker/docker-container-running.png>)
+## Docker Installed on EC2
+![Docker EC2](<screenshots/ec2/docker-installed-ec2.png>)
 
-### Browser Test via Localhost Loopback
-Network routing protocols were audited across the WSL2 bridge by verifying the active user interface via a host browser loopback session at port `5000`.
+## Running Docker Container on EC2
+![Docker EC2 Running](<screenshots/ec2/docker-ec2-running.png>)
 
-![Docker Browser Test](<Docker/app-live.png>)
-
-### Docker Process Audit (Container List)
-An explicit container engine inspection was executed to validate continuous runtime stability, uptime metrics, and absolute port binding parity.
-
-![Docker PS](<Docker/docker-ps.png>)
+## Public EC2 Deployment
+![EC2 Deployment](<screenshots/ec2/ec2-public-access.png>)
 
 ---
 
-## Step 4 – Provisioning the Cloud Server & Network Security
+# Step 4 – Configure GitHub Actions CI/CD
 
-With local testing complete, a secure virtual EC2 instance was provisioned within AWS to migrate the application to a production environment. To prevent potential security vulnerabilities, the architecture was deliberately built to bypass traditional, leak-prone SSH key pairs in favor of secure, IAM-driven management via AWS Systems Manager (SSM).
+Configured GitHub Actions to automatically deploy the application to the EC2 instance after every push to the repository.
 
-### 1. Identity & Access Management (IAM) Isolation
-Operational security and automated deployments are managed entirely via fine-grained IAM roles, granting explicit access configurations to the continuous deployment pipeline without static credentials.
+## GitHub Actions Workflow
+![GitHub Actions](<screenshots/cicd/github-actions-workflow.png>)
 
-![IAM Permissions Configuration](<Screenshots/CICD/aws-iam-permissions.png>)
-
-### 2. Container Registry Provisioning
-A private container registry was structured via Amazon Elastic Container Registry (ECR) to securely host, version control, and serve the production multi-layer application builds.
-
-![Amazon ECR Repository](<Screenshots/CICD/aws-ecr-repository.png>)
+## Successful CI/CD Deployment
+![CI/CD Success](<screenshots/cicd/github-actions-success.png>)
 
 ---
 
-## Step 5 – Remote Deployment & Production Cloud Verification
+# Step 5 – Future Improvements
 
-Once the host server booted and successfully checked into the AWS Systems Manager dashboard with an active `Online` status, deployment shell scripts were orchestrated remotely without maintaining an open terminal connection.
+Planned improvements for future versions of the project:
 
-### 1. Automated Host Environment Provisioning
-Using the Systems Manager `AWS-RunShellScript` automation document, execution commands were delivered to update the remote Ubuntu repository tables, fetch and execute the official Docker runtime engine convenience script, and set active background engine daemon permissions.
-
-![Systems Manager Run Command Output](<Screenshots/CICD/docker-installed.png>)
-
-### 2. Live Cloud Environment Validation
-To ensure end-to-end functionality of the cloud architecture—validating the Internet Gateway, custom VPC routing tables, the custom firewall port 5000 binding, and the remote Docker container engine—an isolated testing server container was launched.
-
-The cloud node successfully serves live traffic on the public internet, completing the core cloud infrastructure delivery milestone:
-
-![Live Deployment Verification](<Screenshots/CICD/deployment-verification.png>)
+- Add Nginx reverse proxy
+- Add HTTPS support
+- Add custom domain
+- Add monitoring and logging
+- Automate infrastructure with Terraform
