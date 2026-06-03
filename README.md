@@ -70,13 +70,13 @@ The Flask application was containerized using Docker to ensure consistent deploy
 Launched an EC2 instance and deployed the Dockerized Flask application to the cloud.
 
 ## EC2 Instance Created
-![EC2 Instance](<screenshots/ec2/ec2-instance-created.png>)
+![EC2 Instance](<Screenshots/Deploy Docker Container to AWS EC2/ec2-instance-active.png>)
 
 ## SSH Connection to EC2
-![SSH Connection](<screenshots/ec2/ssh-connection.png>)
+![SSH Connection](<Screenshots/Deploy Docker Container to AWS EC2/ec2-ssh-connection.png>)
 
 ## EC2 Security Group Configuration
-![Security Group](<screenshots/ec2/security-group.png>)
+![Security Group](<Screenshots/Deploy Docker Container to AWS EC2/security-group-config.png>)
 
 ## Docker Installed on EC2
 ![Docker EC2](<screenshots/ec2/docker-installed-ec2.png>)
