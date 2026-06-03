@@ -34,13 +34,13 @@ docker-ec2-cicd-flask-app/
 Created a simple Flask web application running locally.
 
 ## Flask Application Code
-![Flask Code](<screenshots/local/flask-code.png>)
+![Flask Code](<Screenshots/Flask app/Flask Application Code.PNG>)
 
 ## Flask Application Running
-![Flask Running](<screenshots/local/flask-terminal-running.png>)
+![Flask Running](<Screenshots/Flask app/Flask Application Running.PNG>)
 
 ## Browser Test
-![Browser Test](<screenshots/local/flask-browser-test.png>)
+![Browser Test](<Screenshots/Flask app/Flask app running in terminal.PNG>)
 
 ---
 
@@ -49,19 +49,19 @@ Created a simple Flask web application running locally.
 The Flask application was containerized using Docker to ensure consistent deployment across environments.
 
 ## Dockerfile
-![Dockerfile](<screenshots/docker/dockerfile.png>)
+![Dockerfile](<Screenshots/Docker/Dockerfile.PNG>)
 
 ## Docker Build Success
-![Docker Build](<screenshots/docker/docker-build-success.png>)
+![Docker Build](<Screenshots/Docker/Docker build success.PNG>)
 
 ## Running Docker Container
-![Docker Container](<screenshots/docker/docker-container-running.png>)
+![Docker Container](<Screenshots/Docker/Running Docker Container.PNG>)
 
 ## Docker Process Audit (Container List)
-![Docker PS](<screenshots/docker/docker-ps.png>)
+![Docker PS](<Screenshots/Docker/Docker ps.PNG>)
 
 ## Browser Test via Localhost Loopback
-![Docker Browser Test](<screenshots/docker/docker-browser-test.png>)
+![Docker Browser Test](<Screenshots/Docker/Browser test.PNG>)
 
 ---
 
@@ -82,7 +82,7 @@ Launched an EC2 instance and deployed the Dockerized Flask application to the cl
 ![Docker EC2](<screenshots/ec2/docker-installed-ec2.png>)
 
 ## Running Docker Container on EC2
-![Docker EC2 Running](<screenshots/ec2/docker-ec2-running.png>)
+![Docker EC2 Running](<Screenshots/CICD/docker-installed.png>)
 
 ## Public EC2 Deployment
 ![EC2 Deployment](<screenshots/ec2/ec2-public-access.png>)
