@@ -79,13 +79,13 @@ Launched an EC2 instance and deployed the Dockerized Flask application to the cl
 ![Security Group](<Screenshots/Deploy Docker Container to AWS EC2/security-group-config.png>)
 
 ## Docker Installed on EC2
-![Docker EC2](<screenshots/ec2/docker-installed-ec2.png>)
+![Docker EC2](<Screenshots/CICD/docker-installed.png>)
 
 ## Running Docker Container on EC2
 ![Docker EC2 Running](<Screenshots/CICD/docker-installed.png>)
 
 ## Public EC2 Deployment
-![EC2 Deployment](<screenshots/ec2/ec2-public-access.png>)
+![EC2 Deployment](<Screenshots/CICD/deployment-verification.png>)
 
 ---
 
