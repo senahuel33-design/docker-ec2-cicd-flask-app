@@ -100,20 +100,17 @@ An explicit container engine inspection was executed to validate continuous runt
 
 ## Step 4 – Provisioning the Cloud Server & Network Security
 
-With local testing complete, a secure virtual EC2 instance was provisioned within AWS to migrate the application to a production cloud environment. To prevent potential security vulnerabilities, the architecture was deliberately built to bypass traditional, leak-prone SSH key pairs in favor of secure, IAM-driven management via AWS Systems Manager (SSM).
+With local testing complete, a secure virtual EC2 instance was provisioned within AWS to migrate the application to a production environment. To prevent potential security vulnerabilities, the architecture was deliberately built to bypass traditional, leak-prone SSH key pairs in favor of secure, IAM-driven management via AWS Systems Manager (SSM).
 
-### 1. Production Network Integration
-The instance was targeted to deploy within the newly configured custom `flask-production-network-vpc` and bound to the public-facing subnet to receive a routed public IPv4 address.
+### 1. Identity & Access Management (IAM) Isolation
+Operational security and automated deployments are managed entirely via fine-grained IAM roles, granting explicit access configurations to the continuous deployment pipeline without static credentials.
 
-### 2. Network Firewall Isolation
-A brand-new production Security Group (`flask-production-sg`) was created. To secure the node, default administrative access rules like SSH (Port 22) were left completely omitted. Instead, inbound traffic was narrowly scoped to expose only Custom TCP port `5000` to the public internet (`0.0.0.0/0`) to process web app requests.
+![IAM Permissions Configuration](<Screenshots/CICD/aws-iam-permissions.png>)
 
-![Security Group Configuration](screenshots/ec2/security-group-config.png)
+### 2. Container Registry Provisioning
+A private container registry was structured via Amazon Elastic Container Registry (ECR) to securely host, version control, and serve the production multi-layer application builds.
 
-### 3. Keyless Node Authentication
-Authentication mechanisms were shifted entirely onto AWS-managed identity contexts. The launch sequence bypassed key pair generation files, relying entirely on the host instance checking into the SSM management plane using its attached core IAM profile role.
-
-![Bypassing Key Pair Access](screenshots/ec2/keypair-bypass.png)
+![Amazon ECR Repository](<Screenshots/CICD/aws-ecr-repository.png>)
 
 ---
 
