@@ -31,5 +31,11 @@ jobs:
           REPOSITORY: flask-cicd-app
           IMAGE_TAG: latest
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          - name: Build, Tag, and Push Docker Image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: flask-cicd-app
+          IMAGE_TAG: latest
+        run: |
+          docker build -f Docker/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
