@@ -94,7 +94,7 @@ Launched an EC2 instance and deployed the Dockerized Flask application to the cl
 Configured GitHub Actions to automatically deploy the application to the EC2 instance after every push to the repository.
 
 ## GitHub Actions Workflow
-![GitHub Actions](<screenshots/cicd/github-actions-workflow.png>)
+![GitHub Actions](<Screenshots/Configure GitHub Actions CI/github-actions-workflow.png>)
 
 ## Successful CI/CD Deployment
 ![CI/CD Success](<screenshots/cicd/github-actions-success.png>)
