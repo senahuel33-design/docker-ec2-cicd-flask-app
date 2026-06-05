@@ -36,15 +36,18 @@ jobs:
 
       - name: Deploy to EC2 via AWS Systems Manager (SSM)
         run: |
+          # Fetch the token directly inside the GitHub Runner
+          ECR_TOKEN=$(aws ecr get-login-password --region eu-west-1)
+          
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
             --targets "Key=instanceids,Values=i-0eafb72d55f61da97" \
-            --comment "Deploy latest Docker container to port 5000" \
-            --parameters 'commands=[
-            "if ! command -v aws &> /dev/null; then apt-get update && apt-get install -y unzip && curl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\" && unzip awscliv2.zip && ./aws/install --clibinprefix /usr/bin --binprefix /usr/bin; fi",
-            "aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 578273199481.dkr.ecr.eu-west-1.amazonaws.com",
-            "docker pull 578273199481.dkr.ecr.eu-west-1.amazonaws.com/flask-cicd-app:latest",
-            "docker stop flask-app || true",
-            "docker rm flask-app || true",
-            "docker run -d -p 5000:5000 --name flask-app 578273199481.dkr.ecr.eu-west-1.amazonaws.com/flask-cicd-app:latest"
-          ]' \
+            --comment "Deploy latest Docker container via direct token" \
+            --parameters "commands=[
+              \"echo '$ECR_TOKEN' | docker login --username AWS --password-stdin 578273199481.dkr.ecr.eu-west-1.amazonaws.com\",
+              \"docker pull 578273199481.dkr.ecr.eu-west-1.amazonaws.com/flask-cicd-app:latest\",
+              \"docker stop flask-app || true\",
+              \"docker rm flask-app || true\",
+              \"docker run -d -p 5000:5000 --name flask-app 578273199481.dkr.ecr.eu-west-1.amazonaws.com/flask-cicd-app:latest\"
+            ]" \
+            --region eu-west-1
