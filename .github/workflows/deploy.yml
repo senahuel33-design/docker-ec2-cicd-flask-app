@@ -41,7 +41,8 @@ jobs:
             --targets "Key=instanceids,Values=i-0eafb72d55f61da97" \
             --comment "Deploy latest Docker container to port 5000" \
             --parameters 'commands=[
-            "/usr/local/bin/aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 578273199481.dkr.ecr.eu-west-1.amazonaws.com",
+            "if ! command -v aws &> /dev/null; then apt-get update && apt-get install -y unzip && curl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\" && unzip awscliv2.zip && ./aws/install --clibinprefix /usr/bin --binprefix /usr/bin; fi",
+            "aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 578273199481.dkr.ecr.eu-west-1.amazonaws.com",
             "docker pull 578273199481.dkr.ecr.eu-west-1.amazonaws.com/flask-cicd-app:latest",
             "docker stop flask-app || true",
             "docker rm flask-app || true",
