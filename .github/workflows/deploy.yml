@@ -38,7 +38,7 @@ jobs:
         run: |
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
-            --targets "Key=instanceids,Values=i-08fe9e07cd2131442" \
+            --targets "Key=instanceids,Values=i-0eafb72d55f61da97" \
             --comment "Deploy latest Docker container to port 5000" \
             --parameters 'commands=[
               "sudo aws ecr get-login-password --region eu-west-1 | sudo docker login --username AWS --password-stdin 578273199481.dkr.ecr.eu-west-1.amazonaws.com",
