@@ -97,7 +97,7 @@ Configured GitHub Actions to automatically deploy the application to the EC2 ins
 ![GitHub Actions](<Screenshots/Configure GitHub Actions CI/github-actions-workflow.png>)
 
 ## Successful CI/CD Deployment
-![CI/CD Success](<screenshots/cicd/github-actions-success.png>)
+![CI/CD Success](<successful-cicd-deployment.png>)
 
 ---
 
