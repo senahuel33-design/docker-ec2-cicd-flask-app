@@ -111,10 +111,10 @@ Terraform was used to automate AWS infrastructure provisioning.
 - Amazon ECR Repository
 
 ## Terraform Initialization
-![Terraform Init](<Screenshots/Terraform/terraform-apply.png>)
+![Terraform Init](<Screenshots/Terraform/terraform-init.png>)
 
 ## Terraform Apply
-![Terraform Apply](<Screenshots/Terraform/terraform-init.png>)
+![Terraform Apply](<Screenshots/Terraform/terraform-apply.png>)
 
 ## EC2 Created with Terraform
 ![Terraform EC2](<Screenshots/Terraform/terraform-ec2.png>)
