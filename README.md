@@ -101,12 +101,20 @@ Configured GitHub Actions to automatically deploy the application to the EC2 ins
 
 ---
 
-# Step 5 – Future Improvements
+# Step 5 – Terraform Infrastructure Automation
 
-Planned improvements for future versions of the project:
+Terraform was used to automate AWS infrastructure provisioning.
 
-- Add Nginx reverse proxy
-- Add HTTPS support
-- Add custom domain
-- Add monitoring and logging
-- Automate infrastructure with Terraform
+## Terraform Resources
+- EC2 Instance
+- Security Groups
+- Amazon ECR Repository
+
+## Terraform Initialization
+![Terraform Init](<Screenshots/Terraform/terraform-apply.png>)
+
+## Terraform Apply
+![Terraform Apply](<Screenshots/Terraform/terraform-init.png>)
+
+## EC2 Created with Terraform
+![Terraform EC2](<Screenshots/Terraform/terraform-ec2.png>)
