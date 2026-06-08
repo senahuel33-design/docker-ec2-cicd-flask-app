@@ -101,6 +101,8 @@ Launched an EC2 instance and deployed the Dockerized Flask application to the cl
 
 Configured GitHub Actions to automatically deploy the application to the EC2 instance after every push to the repository.
 
+This stage represented the most challenging phase of the project, as resolving configuration discrepancies from earlier setup steps required meticulous, iterative troubleshooting. The primary engineering bottleneck involved configuring the precise IAM policies and Security Group rules necessary to establish secure, seamless interconnection between the AWS services, ultimately enabling the application to run smoothly.
+
 ## GitHub Actions Workflow
 ![GitHub Actions](<Screenshots/Configure GitHub Actions CI/github-actions-workflow.png>)
 
@@ -126,3 +128,42 @@ Terraform was used to automate AWS infrastructure provisioning.
 
 ## EC2 Created with Terraform
 ![Terraform EC2](<Screenshots/Terraform/terraform-ec2.png>)
+
+## Issues 
+
+1. GitHub Actions OIDC Handshake Authentication Failure.
+   
+Error Message: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity
+
+Context: Occurred during the initial authentication step (Configure AWS Credentials) inside the GitHub Actions runner.
+![Handshake Authentication Failure](<Screenshots/Mistakes/OpenID Connect (OIDC) handshake error.png>
+
+Resolution: * Updated the Trust Relationship JSON Document inside the deployment IAM role.
+
+Verified that the condition block explicitly allowed sts:AssumeRoleWithWebIdentity from the official GitHub Identity Provider (token.actions.githubusercontent.com).
+
+Scoped the audience condition (aud) to sts.amazonaws.com and strictly bound the resource claim to the correct repository path (repo:senahuel33-design/docker-ec2-cicd-flask-app:*).
+![Updated the Trust Relationship JSON Document](<Screenshots/Mistakes/OpenID Connect (OIDC) handshake error.png>)
+
+2. AWS Systems Manager (SSM) Target Node State Error
+
+Error Message: Error: aws: [ERROR]: An error occurred (InvalidInstanceId) when calling the SendCommand operation: Instances not in a valid state for account
+
+Context: Occurred during the remote execution step (Deploy to EC2 via AWS Systems Manager (SSM)).
+![(SSM) Target Node State Error](<Screenshots/Mistakes/Instances not in a valid state for account.png>)
+Root Cause: This error occurs under two conditions: either the deployment script is targeting a hardcoded or incorrect Instance ID that does not exist in the region, or the target EC2 server hasn't been picked up by the Systems Manager inventory. Without the AmazonSSMManagedInstanceCore policy attached to the server's IAM instance profile, the SSM agent daemon running inside Ubuntu cannot check in with the AWS backend control plane, rendering it "invisible" to automated terminal commands.
+
+Resolution:
+
+Attached the AmazonSSMManagedInstanceCore AWS managed policy directly to the instance profile role bound to the EC2 host.
+
+Audited the live compute dashboard to retrieve the precise operational Instance ID.
+
+Corrected the target configuration payload inside the workflow block (--targets "Key=instanceids,Values=i-0eafb72d55f61da97") to map execution requests directly to the active node.
+
+## Lessons Learned
+
+- Managing Docker containers in cloud environments
+- Configuring GitHub Actions secrets securely
+- Troubleshooting EC2 networking and security groups
+- Understanding CI/CD automation workflows
