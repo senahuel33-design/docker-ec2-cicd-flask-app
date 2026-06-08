@@ -98,7 +98,7 @@ Configured GitHub Actions to automatically deploy the application to the EC2 ins
 
 ## Successful CI/CD Deployment
 ![CI/CD Success](<Screenshots/Configure GitHub Actions CI/successful-cicd-deployment.png>)
-
+URL : http://3.255.113.69:5000
 ---
 
 # Step 5 – Terraform Infrastructure Automation
