@@ -4,6 +4,14 @@ This project demonstrates how to deploy a Dockerized Python Flask application to
 
 The application is containerised with Docker, hosted on an EC2 instance, and automatically redeployed whenever code is pushed to GitHub.
 
+The project includes:
+- Docker containerization
+- Automated CI/CD with GitHub Actions
+- AWS EC2 deployment
+- Infrastructure automation (Terraform - in progress)
+- Secure deployment workflow
+
+  
 ## Architecture
 Developer → GitHub → GitHub Actions → AWS EC2 → Users
 ![Architecture](<Architecture/Architecture.png>)
